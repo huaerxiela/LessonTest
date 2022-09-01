@@ -6,7 +6,6 @@ import android.view.View;
 
 import com.hexl.lessontest.logic.AnonymousDemo;
 import com.hexl.lessontest.logic.IAnimal;
-import com.hexl.lessontest.logic.Monkey;
 import com.hexl.lessontest.logic.People;
 import com.hexl.lessontest.utils.LogUtils;
 import com.hexl.lessontest.utils.ToastUtils;
@@ -17,10 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
-import java.nio.ByteBuffer;
 
 import dalvik.system.DexClassLoader;
-import dalvik.system.InMemoryDexClassLoader;
 
 public class MyListener implements View.OnClickListener{
     @SuppressLint("NonConstantResourceId")
