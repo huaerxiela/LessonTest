@@ -83,16 +83,23 @@ public class MyListener implements View.OnClickListener{
                 IAnimal xiaoHua = new People(15, "隔壁小花");
                 LogUtils.info("xiaoHua.getClass() = " + xiaoHua.getClass());
                 xiaoHua.run("xiaoHua");
+//                xiaoHua.peach();
                 ((People)xiaoHua).peach();
                 ToastUtils.showToast("type_cast");
                 break;
             case R.id.interface_impl:
+                testInterface(new People());
                 ToastUtils.showToast("interface_impl");
                 break;
             default:
                 ToastUtils.showToast("111111");
                 break;
         }
+    }
+
+    public void testInterface(IAnimal animal){
+        LogUtils.info("animal.getClass() = " + animal.getClass());
+        animal.run("testInterface");
     }
 
     public void loadDex(Context context, Object object){
