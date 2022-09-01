@@ -79,7 +79,7 @@ public class MyListener implements View.OnClickListener{
                 ToastUtils.showToast("array");
                 break;
             case R.id.type_cast:
-                People xiaoHua = new People(15, "隔壁小花");
+                Monkey xiaoHua = new People(15, "隔壁小花");
                 xiaoHua.run("xiaoHua");
                 xiaoHua.peach();
                 ToastUtils.showToast("type_cast");
