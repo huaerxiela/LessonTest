@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.hexl.lessontest.logic.AnonymousDemo;
+import com.hexl.lessontest.logic.IAnimal;
 import com.hexl.lessontest.logic.Monkey;
 import com.hexl.lessontest.logic.People;
 import com.hexl.lessontest.utils.LogUtils;
@@ -79,9 +80,10 @@ public class MyListener implements View.OnClickListener{
                 ToastUtils.showToast("array");
                 break;
             case R.id.type_cast:
-                Monkey xiaoHua = new People(15, "隔壁小花");
+                IAnimal xiaoHua = new People(15, "隔壁小花");
+                LogUtils.info("xiaoHua.getClass() = " + xiaoHua.getClass());
                 xiaoHua.run("xiaoHua");
-                xiaoHua.peach();
+                ((People)xiaoHua).peach();
                 ToastUtils.showToast("type_cast");
                 break;
             case R.id.interface_impl:
