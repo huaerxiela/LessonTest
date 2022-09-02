@@ -99,6 +99,17 @@ public class MyListener implements View.OnClickListener{
         animal.run("testInterface");
     }
 
+    public void getParentClassloader(ClassLoader classLoader){
+        LogUtils.info("ActivityThread parentLoader0  = " + classLoader);
+        ClassLoader parentLoader = classLoader.getParent();
+        LogUtils.info("ActivityThread parentLoader1  = " + parentLoader);
+        while (parentLoader.getParent() != null) {
+            parentLoader = parentLoader.getParent();
+            LogUtils.info("ActivityThread parentLoader2  = " + parentLoader);
+        }
+        LogUtils.info("ActivityThread parentLoader3  = " + parentLoader);
+    }
+
     public void loadDex(Context context, Object object){
         File cacheFile = context.getApplicationContext().getCacheDir();
         String internalPath = cacheFile.getAbsolutePath() + File.separator + "gson_dex.dex";
@@ -111,14 +122,17 @@ public class MyListener implements View.OnClickListener{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DexClassLoader dexClassLoader = new DexClassLoader(internalPath, cacheFile.getAbsolutePath(), null, context.getClassLoader());
-
+        DexClassLoader dexClassLoader = new DexClassLoader(internalPath, null, null, context.getClassLoader());
+        LogUtils.info("ActivityThread currLoader  = " + context.getClassLoader());
+        getParentClassloader(dexClassLoader);
         try {
             Class<?> clazz = dexClassLoader.loadClass("com.google.gson.Gson");
             Method method = clazz.getMethod("toJson", Object.class);
             Object info = method.invoke(clazz.newInstance(), object);
             LogUtils.info("new Gson().toJson = " + info);
+            LogUtils.info("load MainActivity = " + dexClassLoader.loadClass("com.hexl.lessontest.MainActivity"));
         } catch (Exception e) {
+            LogUtils.info("loadDex find error = " + e.getMessage());
             e.printStackTrace();
         }
     }
