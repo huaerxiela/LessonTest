@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         binding.array.setOnClickListener(listener);
         binding.typeCast.setOnClickListener(listener);
         binding.interfaceImpl.setOnClickListener(listener);
+        binding.testEnum.setOnClickListener(listener);
+        binding.nonAscii.setOnClickListener(listener);
 
 
     }
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     public void testStaticForLoadClass(){
         try {
             LogUtils.info("onCreate: before loadClass");
-            Class<?> test = getClassLoader().loadClass("com.hexl.lessontest.Test");
+            Class<?> test = getClassLoader().loadClass("com.hexl.lessontest.TestClass");
             LogUtils.info("onCreate: after loadClass");
             Constructor<?> constructor = test.getDeclaredConstructor();
             LogUtils.info("onCreate: after getDeclaredConstructor");

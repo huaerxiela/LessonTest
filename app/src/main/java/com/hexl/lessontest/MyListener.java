@@ -7,6 +7,7 @@ import android.view.View;
 import com.hexl.lessontest.logic.AnonymousDemo;
 import com.hexl.lessontest.logic.IAnimal;
 import com.hexl.lessontest.logic.People;
+import com.hexl.lessontest.logic.Test;
 import com.hexl.lessontest.utils.LogUtils;
 import com.hexl.lessontest.utils.ToastUtils;
 
@@ -16,10 +17,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 
 import dalvik.system.DexClassLoader;
 
 public class MyListener implements View.OnClickListener{
+    public DexClassLoader dexClassLoader;
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
@@ -74,6 +78,10 @@ public class MyListener implements View.OnClickListener{
                 ToastUtils.showToast("dynamic_dex");
                 break;
             case R.id.array:
+                Test.printArray(new int[]{1, 2, 3});
+                Test.printArray(new char[]{'a', 'b', 'c'});
+                Test.printArray("隔壁老花".getBytes(StandardCharsets.UTF_8));
+                Test.printArray(new String[]{"隔壁", "老花"});
                 ToastUtils.showToast("array");
                 break;
             case R.id.type_cast:
@@ -87,6 +95,14 @@ public class MyListener implements View.OnClickListener{
             case R.id.interface_impl:
                 testInterface(new People());
                 ToastUtils.showToast("interface_impl");
+                break;
+            case R.id.test_enum:
+                Test.change();
+                ToastUtils.showToast("test_enum");
+                break;
+            case R.id.non_ascii:
+                int result = new Test().֏(911);
+                ToastUtils.showToast("non_ascii " + result);
                 break;
             default:
                 ToastUtils.showToast("111111");
@@ -111,18 +127,20 @@ public class MyListener implements View.OnClickListener{
     }
 
     public void loadDex(Context context, Object object){
-        File cacheFile = context.getApplicationContext().getCacheDir();
-        String internalPath = cacheFile.getAbsolutePath() + File.separator + "gson_dex.dex";
-        File desFile = new File(internalPath);
-        try {
-            if (!desFile.exists()) {
-                desFile.createNewFile();
-                copyFiles(context,"gson.dex", desFile);
+        if (dexClassLoader == null){
+            File cacheFile = context.getApplicationContext().getCacheDir();
+            String internalPath = cacheFile.getAbsolutePath() + File.separator + "gson_dex.dex";
+            File desFile = new File(internalPath);
+            try {
+                if (!desFile.exists()) {
+                    desFile.createNewFile();
+                    copyFiles(context,"gson.dex", desFile);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            dexClassLoader = new DexClassLoader(internalPath, null, null, context.getClassLoader());
         }
-        DexClassLoader dexClassLoader = new DexClassLoader(internalPath, null, null, context.getClassLoader());
         LogUtils.info("ActivityThread currLoader  = " + context.getClassLoader());
         getParentClassloader(dexClassLoader);
         try {

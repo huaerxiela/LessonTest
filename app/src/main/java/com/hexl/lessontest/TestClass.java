@@ -2,7 +2,7 @@ package com.hexl.lessontest;
 
 import android.util.Log;
 
-public class Test {
+public class TestClass {
     private static final String TAG = "Test";
 
     static {

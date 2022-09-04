@@ -2,110 +2,127 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.hexl.lessontest.MainActivity">
 
-    <Button
-        android:id="@+id/simple_method"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="普通方法"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.hexl.lessontest.MainActivity">
 
-    <Button
-        android:id="@+id/overload_method"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="重载方法"
-        app:layout_constraintStart_toEndOf="@+id/simple_method"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/simple_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="普通方法"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/init_method"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="构造方法"
-        app:layout_constraintStart_toEndOf="@+id/overload_method"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/overload_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重载方法"
+            app:layout_constraintStart_toEndOf="@+id/simple_method"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/search_instance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="查找对象"
-        app:layout_constraintStart_toEndOf="@+id/init_method"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/init_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="构造方法"
+            app:layout_constraintStart_toEndOf="@+id/overload_method"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/prop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="属性相关"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/simple_method" />
+        <Button
+            android:id="@+id/search_instance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查找对象"
+            app:layout_constraintStart_toEndOf="@+id/init_method"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/inner_class"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="内部类"
-        app:layout_constraintStart_toEndOf="@+id/prop"
-        app:layout_constraintTop_toBottomOf="@+id/overload_method" />
+        <Button
+            android:id="@+id/prop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="属性相关"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/simple_method" />
 
-    <Button
-        android:id="@+id/anonymous_class"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="匿名类"
-        app:layout_constraintStart_toEndOf="@+id/inner_class"
-        app:layout_constraintTop_toBottomOf="@+id/init_method" />
+        <Button
+            android:id="@+id/inner_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="内部类"
+            app:layout_constraintStart_toEndOf="@+id/prop"
+            app:layout_constraintTop_toBottomOf="@+id/overload_method" />
 
-    <Button
-        android:id="@+id/all_method"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="所有方法"
-        app:layout_constraintStart_toEndOf="@+id/anonymous_class"
-        app:layout_constraintTop_toBottomOf="@+id/search_instance" />
+        <Button
+            android:id="@+id/anonymous_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="匿名类"
+            app:layout_constraintStart_toEndOf="@+id/inner_class"
+            app:layout_constraintTop_toBottomOf="@+id/init_method" />
 
-    <Button
-        android:id="@+id/dynamic_dex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="动态dex"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prop" />
+        <Button
+            android:id="@+id/all_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="所有方法"
+            app:layout_constraintStart_toEndOf="@+id/anonymous_class"
+            app:layout_constraintTop_toBottomOf="@+id/search_instance" />
 
-    <Button
-        android:id="@+id/array"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="数组"
-        app:layout_constraintStart_toEndOf="@+id/dynamic_dex"
-        app:layout_constraintTop_toBottomOf="@+id/inner_class" />
+        <Button
+            android:id="@+id/dynamic_dex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="动态dex"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prop" />
 
-    <Button
-        android:id="@+id/type_cast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="类型转换"
-        app:layout_constraintStart_toEndOf="@+id/array"
-        app:layout_constraintTop_toBottomOf="@+id/anonymous_class" />
+        <Button
+            android:id="@+id/array"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="数组"
+            app:layout_constraintStart_toEndOf="@+id/dynamic_dex"
+            app:layout_constraintTop_toBottomOf="@+id/inner_class" />
 
-    <Button
-        android:id="@+id/interface_impl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="接口实现"
-        app:layout_constraintStart_toEndOf="@+id/type_cast"
-        app:layout_constraintTop_toBottomOf="@+id/all_method" />
+        <Button
+            android:id="@+id/type_cast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="类型转换"
+            app:layout_constraintStart_toEndOf="@+id/array"
+            app:layout_constraintTop_toBottomOf="@+id/anonymous_class" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/interface_impl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="接口实现"
+            app:layout_constraintStart_toEndOf="@+id/type_cast"
+            app:layout_constraintTop_toBottomOf="@+id/all_method" />
+
+        <Button
+            android:id="@+id/test_enum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ENUM"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dynamic_dex" />
+
+        <Button
+            android:id="@+id/non_ascii"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="特殊字符"
+            app:layout_constraintStart_toEndOf="@+id/test_enum"
+            app:layout_constraintTop_toBottomOf="@+id/array" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
