@@ -21,13 +21,24 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected native void onCreate(Bundle savedInstanceState);
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//        binding = ActivityMainBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
+//
+//        initView();
+//    }
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+    /**
+     * A native method that is implemented by the 'myapplication' native library,
+     * which is packaged with this application.
+     */
+    public native String stringFromJNI();
+    public static native void init();
 
-
+    public void initView(){
         MyListener listener = new MyListener();
         binding.simpleMethod.setOnClickListener(listener);
         binding.overloadMethod.setOnClickListener(listener);
@@ -43,16 +54,7 @@ public class MainActivity extends AppCompatActivity {
         binding.interfaceImpl.setOnClickListener(listener);
         binding.testEnum.setOnClickListener(listener);
         binding.nonAscii.setOnClickListener(listener);
-
-
     }
-
-    /**
-     * A native method that is implemented by the 'myapplication' native library,
-     * which is packaged with this application.
-     */
-    public native String stringFromJNI();
-
 
     public void testStaticForLoadClass(){
         try {
