@@ -10,7 +10,7 @@
 
 
 #define APPNAME "FridaDetectionTest"
-#define  TAG    "HEXL"
+#define  TAG    "HEXL-native"
 
 // 定义info信息
 
@@ -28,15 +28,51 @@
 JavaVM *global_vm;
 JNIEnv *global_env;
 
+int test_fopen() {
+    FILE *fp;
+
+//Opens a file named "file.txt" for writing
+    fp = fopen("/data/data/com.hexl.lessontest/file.txt", "a+");
+
+//Checks if the file was successfully opened
+    if (fp == NULL) {
+        LOGI("Failed to open file.\n");
+        return 1;
+    }
+
+//Writes some data to the file
+    fprintf(fp, "This is a test file.\n");
+    LOGI("write file success");
+//Closes the file
+    fclose(fp);
+
+    return 0;
+}
+
+extern "C" JNIEXPORT int target_fun(){
+    //调用srand()函数来初始化随机数生成器
+    srand((unsigned) time(NULL));
+
+    //使用rand()函数生成随机数
+    int randomNum = rand();
+    LOGI("target_fun_inner=%d", randomNum);
+    return randomNum;
+}
+
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_hexl_lessontest_MainActivity_stringFromJNI(
         JNIEnv* env,
         jobject /* this */) {
     std::string hello = "Hello from C++";
     int result = add(1, 2);
-    char str[6];
+    LOGI("add_addr=%p, add_result=%d", add, result);
+    char str[10];
     sprintf(str, " add %d", result);
     LOGI("val=%s,len=%d,address=%p", str, strlen(str), &str);
+    test_fopen();
+    int target_fun_result = target_fun();
+    LOGI("target_fun_addr=%p, target_fun_result=%d", target_fun, target_fun_result);
     return env->NewStringUTF(strcat(const_cast<char *>(hello.c_str()), str));
 }
 

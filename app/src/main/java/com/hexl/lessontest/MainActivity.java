@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     public static native void init();
 
     public void initView(){
+        LogUtils.info("initView stringFromJNI() = " + stringFromJNI());
+
         MyListener listener = new MyListener();
         binding.simpleMethod.setOnClickListener(listener);
         binding.overloadMethod.setOnClickListener(listener);
